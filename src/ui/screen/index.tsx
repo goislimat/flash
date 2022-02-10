@@ -15,14 +15,14 @@ const Title = styled.h1`
 
 interface ScreenProps {
   title: string;
-  previousPage: string;
+  previousPage?: string;
   children: ReactNode;
 }
 
 const Screen = ({ title, previousPage, children }: ScreenProps) => {
   return (
     <ScreenContainer>
-      <BackButton previousPage={previousPage} />
+      {previousPage && <BackButton previousPage={previousPage} />}
       <Title>{title}</Title>
 
       {children}
