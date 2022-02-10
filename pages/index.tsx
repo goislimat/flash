@@ -14,7 +14,7 @@ const Home: NextPage = () => {
           <Link href="quote">QUOTE</Link>
         </li>
         <li>
-          <Link href="app/acquisition/partner/welcome">APP</Link>
+          <Link href="auth/login">APP</Link>
         </li>
       </ul>
     </Screen>

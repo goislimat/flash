@@ -1,5 +1,13 @@
+import { Button, Input, Screen } from "../../src/ui";
+
 const Login = () => {
-  return <div>login</div>;
+  return (
+    <Screen previousPage="/" title="Entrar">
+      <Input label="email" name="email" value="thiago.lima@pier.digital" />
+      <Input label="senha" name="password" value="12345678" password />
+      <Button nextPage="/app/acquisition/partner/welcome">Login</Button>
+    </Screen>
+  );
 };
 
 export default Login;
