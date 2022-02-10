@@ -1,14 +1,12 @@
-import { Button, Input } from "../../src/ui";
+import { Button, Input, Screen } from "../../src/ui";
 
 const Login = () => {
   return (
-    <div>
-      <h1>Login do Parceiro</h1>
-
+    <Screen previousPage="/" title="Multimarcas login">
       <Input label="email" name="email" value="flash@multimarcas.com.br" />
       <Input label="password" name="password" value="12345678" password />
       <Button nextPage="dashboard">Login</Button>
-    </div>
+    </Screen>
   );
 };
 
