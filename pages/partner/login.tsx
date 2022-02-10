@@ -7,7 +7,7 @@ const Login = () => {
 
       <Input label="email" name="email" value="flash@multimarcas.com.br" />
       <Input label="password" name="password" value="12345678" password />
-      <Button>Botao</Button>
+      <Button nextPage="dashboard">Login</Button>
     </div>
   );
 };

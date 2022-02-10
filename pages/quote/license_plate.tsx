@@ -6,7 +6,7 @@ const LicensePlate = () => {
       <h1>Placa do carro</h1>
 
       <Input name="placa" label="placa do carro" value="QUZ7780" />
-      <Button>Continuar</Button>
+      <Button nextPage="vehicle">Continuar</Button>
     </div>
   );
 };
