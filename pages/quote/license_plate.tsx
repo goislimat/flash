@@ -1,5 +1,14 @@
+import { Button, Input } from "../../src/ui";
+
 const LicensePlate = () => {
-  return <div>license plate</div>;
+  return (
+    <div>
+      <h1>Placa do carro</h1>
+
+      <Input name="placa" label="placa do carro" value="QUZ7780" />
+      <Button>Continuar</Button>
+    </div>
+  );
 };
 
 export default LicensePlate;
