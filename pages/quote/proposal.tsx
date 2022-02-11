@@ -131,7 +131,7 @@ const Proposal = () => {
         <CarValueSection>
           <strong>Cobertura do carro</strong>
           <div>
-            <span>100% da Tabela Fipe:</span>
+            <span>100% da Tabela FIPE:</span>
             <span>R$ 54.325,00</span>
           </div>
         </CarValueSection>
