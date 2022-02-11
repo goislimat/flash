@@ -1,7 +1,11 @@
-import Image from "next/image";
-import styled from "styled-components";
-
+import { useEffect } from "react";
+import { fetcher } from "../../src/helpers/http";
 import { Screen, Button } from "../../src/ui";
+import { useAppContext } from "../app_provider";
+
+import styled from "styled-components";
+import useSWR from "swr";
+import Image from "next/image";
 
 const Greetings = styled.p`
   margin-bottom: 32px;
@@ -90,14 +94,30 @@ const CarValueSection = styled.div`
 `;
 
 const Proposal = () => {
+  const formatCurrency = (value: number | bigint | undefined) => {
+    if (value) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+    }
+  };
+
+  const { personCpf, vehicle } = useAppContext();
+
+  const { data, error } = useSWR(
+    `/api/person/${personCpf}`,
+    fetcher
+  );
+
+  if (error) return "An error has occurred.";
+  if (!data) return "Loading...";
+
   return (
     <Screen previousPage="/" title="Cotação seguro Auto Pier">
       <Greetings>
-        <strong>Thiago</strong>, aqui sua cotação!
+        <strong>{data?.name?.split(" ")[0]}</strong>, aqui sua cotação!
       </Greetings>
 
       <ProposalContainer>
-        <Model>PRISMA Sed. LT 1.4 8V Flexpower 4p.</Model>
+        <Model>{vehicle?.model}</Model>
 
         <PriceContainer>
           <PriceContainerTitle>Mensalidade</PriceContainerTitle>
@@ -131,8 +151,8 @@ const Proposal = () => {
         <CarValueSection>
           <strong>Cobertura do carro</strong>
           <div>
-            <span>100% da Tabela FIPE:</span>
-            <span>R$ 54.325,00</span>
+            <span>100% da Tabela Fipe:</span>
+            <span>{formatCurrency(vehicle?.value)}</span>
           </div>
         </CarValueSection>
       </ProposalContainer>

@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { Button, Input, Screen } from "../../src/ui";
-import { useAppContext } from "../app_context";
+import { useAppContext } from "../app_provider";
 
 const LicensePlate = () => {
   const { setLicensePlate } = useAppContext();

@@ -1,22 +1,32 @@
 import { useEffect } from "react";
 import { Button, Input, Screen } from "../../src/ui";
-import { useAppContext } from "../app_context";
+import { useAppContext } from "../app_provider";
+import { fetcher } from "../../src/helpers/http";
+import useSWR from "swr";
 
 const Vehicle = () => {
-  const { licensePlate } = useAppContext();
+  const { setVehicle, licensePlate } = useAppContext();
+
+  const { data, error } = useSWR(
+    `/api/vehicle/${licensePlate}`,
+    fetcher
+  );
 
   useEffect(() => {
-    console.log(licensePlate)
-  }, [licensePlate])
+    setVehicle(data)
+  }, [data, setVehicle])
+
+  if (error) return "An error has occurred.";
+  if (!data) return "Loading...";
 
   return (
     <Screen previousPage="/quote/license_plate" title="Qual é o seu carro?">
-      <Input name="make" label="fabricante" value="GM - Chevrolet" />
-      <Input name="year" label="ano do modelo" value="2019" />
+      <Input name="make" label="fabricante" value={ data?.manufacturer } />
+      <Input name="year" label="ano do modelo" value={ data?.year_model } />
       <Input
         name="model"
         label="versão do modelo"
-        value="PRISMA Sed. LT 1.4 8V Flexpower 4p."
+        value={ data?.model }
       />
       <Button nextPage="usage">Continuar</Button>
     </Screen>

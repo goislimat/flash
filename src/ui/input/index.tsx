@@ -41,7 +41,7 @@ const Input = ({ name, label, value, password, disabled, onChange }: InputProps)
         id={name}
         name={name}
         type={password ? "password" : "text"}
-        value={value}
+        defaultValue={value}
         onChange={onChange}
         disabled={disabled}
       />
