@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 const InputContainer = styled.div`
@@ -26,11 +27,13 @@ const StyledInput = styled.input`
 interface InputProps {
   name: string;
   label: string;
-  value: string;
+  value?: string;
   password?: true;
+  disabled?: boolean;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ name, label, value, password }: InputProps) => {
+const Input = ({ name, label, value, password, disabled, onChange }: InputProps) => {
   return (
     <InputContainer>
       <InputLabel htmlFor={name}>{label}</InputLabel>
@@ -39,7 +42,8 @@ const Input = ({ name, label, value, password }: InputProps) => {
         name={name}
         type={password ? "password" : "text"}
         value={value}
-        disabled
+        onChange={onChange}
+        disabled={disabled}
       />
     </InputContainer>
   );

@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { Button, Input, Screen } from "../../src/ui";
+import { useAppContext } from "../app_context";
 
 const Vehicle = () => {
+  const { licensePlate } = useAppContext();
+
+  useEffect(() => {
+    console.log(licensePlate)
+  }, [licensePlate])
+
   return (
     <Screen previousPage="/quote/license_plate" title="Qual é o seu carro?">
       <Input name="make" label="fabricante" value="GM - Chevrolet" />
