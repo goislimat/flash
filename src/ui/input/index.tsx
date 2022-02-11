@@ -7,7 +7,7 @@ const InputContainer = styled.div`
 const InputLabel = styled.label`
   display: block;
   margin-bottom: 4px;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-size: 12px;
   line-height: 18px;
 `;
