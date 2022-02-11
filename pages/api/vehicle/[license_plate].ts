@@ -10,6 +10,7 @@ type Data = {
   state: string;
   city: string;
   vehicle_id: string;
+  value: number;
 };
 
 export default async function handler(
@@ -47,6 +48,7 @@ export default async function handler(
       state: result?.uf,
       city: result?.municipio,
       vehicle_id: result?.renavam,
+      value: result?.fipe_possivel[0]?.valor
     });
   } catch (error) {
     return res.status(500);

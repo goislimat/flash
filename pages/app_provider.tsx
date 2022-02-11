@@ -14,24 +14,30 @@ type Vehicle = {
   state: string,
   city: string,
   vehicle_id: string,
+  value: number,
 }
 
 type LicensePlate = string;
+type Cpf = string;
 
 interface AppContextInterface {
   setLicensePlate: (newLicensePlate: LicensePlate) => void;
+  setPersonCpf: (newPersonCpf: Cpf) => void;
   setVehicle: (newVehicle: Vehicle) => void;
   setPerson: (newPerson: Person) => void;
   licensePlate?: LicensePlate;
+  personCpf?: Cpf;
   person?: Person;
   vehicle?: Vehicle;
 }
 
 const AppContextInterfaceDefaults: AppContextInterface = {
   setLicensePlate: () => null,
+  setPersonCpf: () => null,
   setVehicle: () => null,
   setPerson: () => null,
   licensePlate: undefined,
+  personCpf: undefined,
   person: undefined,
   vehicle: undefined,
 }
@@ -42,20 +48,19 @@ type Props = {
     children: ReactNode;
 };
 
-const AppContextProvider = ({ children }: Props) => {
+const AppProvider = ({ children }: Props) => {
   const [vehicle, setVehicle] = useState<Vehicle>();
   const [licensePlate, setLicensePlate] = useState<LicensePlate>();
+  const [personCpf, setPersonCpf] = useState<LicensePlate>();
   const [person, setPerson] = useState<Person>();
-
-  useEffect(() => {
-    console.log(licensePlate)
-  }, [licensePlate])
 
   const value = {
     setLicensePlate,
+    setPersonCpf,
     setVehicle,
     setPerson,
     licensePlate,
+    personCpf,
     vehicle,
     person,
   };
@@ -67,4 +72,4 @@ const AppContextProvider = ({ children }: Props) => {
 
 const useAppContext = (): AppContextInterface => useContext(AppContext);
 
-export { AppContextProvider, useAppContext };
+export { AppProvider, useAppContext };

@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { AppContextProvider } from "./app_context";
 
 export default function Document() {
   return (
@@ -15,9 +14,9 @@ export default function Document() {
         ></link>
       </Head>
       <body>
-        <AppContextProvider>
+
           <Main />
-        </AppContextProvider>
+
         <NextScript />
       </body>
     </Html>
