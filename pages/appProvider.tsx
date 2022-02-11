@@ -1,21 +1,27 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type Person = {
-  name: string,
-  addresses: Array<Map<string, string>>
-}
+  name: string;
+  addresses: Array<Map<string, string>>;
+};
 
 type Vehicle = {
-  year_manufacturing: string,
-  year_model: string,
-  model: string,
-  manufacturer: string,
-  license_plate: string,
-  state: string,
-  city: string,
-  vehicle_id: string,
-  value: number,
-}
+  year_manufacturing: string;
+  year_model: string;
+  model: string;
+  manufacturer: string;
+  license_plate: string;
+  state: string;
+  city: string;
+  vehicle_id: string;
+  value: number;
+};
 
 type LicensePlate = string;
 type Cpf = string;
@@ -40,12 +46,14 @@ const AppContextInterfaceDefaults: AppContextInterface = {
   personCpf: undefined,
   person: undefined,
   vehicle: undefined,
-}
+};
 
-const AppContext = createContext<AppContextInterface>(AppContextInterfaceDefaults);
+const AppContext = createContext<AppContextInterface>(
+  AppContextInterfaceDefaults
+);
 
 type Props = {
-    children: ReactNode;
+  children: ReactNode;
 };
 
 const AppProvider = ({ children }: Props) => {
@@ -65,11 +73,10 @@ const AppProvider = ({ children }: Props) => {
     person,
   };
 
-  return (
-    <AppContext.Provider value={value}>{children}</AppContext.Provider>
-  );
-}
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+};
 
 const useAppContext = (): AppContextInterface => useContext(AppContext);
 
-export { AppProvider, useAppContext };
+export { useAppContext };
+export default AppProvider;

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { fetcher } from "../../src/helpers/http";
 import { Screen, Button } from "../../src/ui";
-import { useAppContext } from "../app_provider";
+import { useAppContext } from "../appProvider";
 
 import styled from "styled-components";
 import useSWR from "swr";
@@ -96,16 +96,16 @@ const CarValueSection = styled.div`
 const Proposal = () => {
   const formatCurrency = (value: number | bigint | undefined) => {
     if (value) {
-      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+      return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(value);
     }
   };
 
   const { personCpf, vehicle } = useAppContext();
 
-  const { data, error } = useSWR(
-    `/api/person/${personCpf}`,
-    fetcher
-  );
+  const { data, error } = useSWR(`/api/person/${personCpf}`, fetcher);
 
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";

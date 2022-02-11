@@ -1,14 +1,13 @@
 import { ChangeEvent } from "react";
 import { Button, Input, Screen } from "../../src/ui";
-import { useAppContext } from "../app_provider";
+import { useAppContext } from "../appProvider";
 
 const CPF = () => {
-
   const { setPersonCpf } = useAppContext();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setPersonCpf(event.target.value);
-  }
+  };
 
   return (
     <Screen previousPage="/quote/cep" title="Qual seu CPF?">
