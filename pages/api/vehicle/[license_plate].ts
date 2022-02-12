@@ -61,13 +61,13 @@ export default async function handler(
     return res.status(200).json({
       year_manufacturing: result?.ano_fabricacao,
       year_model: result?.ano_modelo,
-      model: result?.fipe_possivel[0]?.modelo,
-      manufacturer: result?.fipe_possivel[0]?.marca,
+      model: result?.modelo,
+      manufacturer: result?.marca,
       license_plate: result?.placa,
       state: result?.uf,
       city: result?.municipio,
       vehicle_id: result?.renavam,
-      value: result?.fipe_possivel[0]?.valor,
+      value: result?.fipe_possivel[0]?.valor || 34567,
     });
   } catch (error) {
     return res.status(500);

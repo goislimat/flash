@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled, { css } from "styled-components";
+import { formatCurrency } from "../../../src/helpers/currency";
 import { Screen } from "../../../src/ui";
+import { useAppContext } from "../../appProvider";
 
 const Banner = styled.a`
   display: grid;
@@ -135,6 +137,8 @@ const CheckContainer = styled.div`
 `;
 
 const Contract = () => {
+  const { vehicle } = useAppContext();
+
   return (
     <Screen title="Contratos">
       <Link href="/app/inspection" passHref>
@@ -169,13 +173,13 @@ const Contract = () => {
 
         <VehicleSection>
           <span>Seguro Auto</span>
-          <strong>PRISMA Sed. LT 1.4 8V Flexpower 4p.</strong>
+          <strong>{vehicle?.model}</strong>
         </VehicleSection>
 
         <PriceSection>
           <div>
             <span>Reembolso</span>
-            <strong>R$ 54.325,00</strong>
+            <strong>{formatCurrency(vehicle?.value)}</strong>
           </div>
 
           <div>

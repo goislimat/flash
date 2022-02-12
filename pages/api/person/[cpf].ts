@@ -29,7 +29,7 @@ export default async function handler(
     staticResponse.set("Caetano", "Jundiaí");
 
     return res.status(200).json({
-      name: "Thiago",
+      name: "Exemplo",
       addresses: [staticResponse],
     });
   }

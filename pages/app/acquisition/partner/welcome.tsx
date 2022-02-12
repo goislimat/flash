@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { formatCurrency } from "../../../../src/helpers/currency";
 import { Button, Screen } from "../../../../src/ui";
+import { useAppContext } from "../../../appProvider";
 
 const Content = styled.div`
   margin: 60px 0;
@@ -108,6 +110,8 @@ const SectionLine = styled.div`
 `;
 
 const Welcome = () => {
+  const { vehicle } = useAppContext();
+
   return (
     <Screen previousPage="/" title="Confira a sua cotação">
       <Content>
@@ -146,11 +150,11 @@ const Welcome = () => {
 
           <div>
             <span>Modelo</span>
-            <em>PRISMA Sed. LT 1.4 8V Flexpower 4p.</em>
+            <em>{vehicle?.model}</em>
           </div>
           <div>
             <span>Placa</span>
-            <em>QUZ-7780</em>
+            <em>{vehicle?.license_plate}</em>
           </div>
           <div>
             <span>Cobertura</span>
@@ -158,7 +162,7 @@ const Welcome = () => {
           </div>
           <div>
             <span>Valor da cobertura</span>
-            <em>R$ 54.325,00</em>
+            <em>{formatCurrency(vehicle?.value)}</em>
           </div>
         </CarContainer>
       </Content>

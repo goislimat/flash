@@ -6,6 +6,7 @@ import { useAppContext } from "../appProvider";
 import styled from "styled-components";
 import useSWR from "swr";
 import Image from "next/image";
+import { formatCurrency } from "../../src/helpers/currency";
 
 const Greetings = styled.p`
   margin-bottom: 32px;
@@ -94,15 +95,6 @@ const CarValueSection = styled.div`
 `;
 
 const Proposal = () => {
-  const formatCurrency = (value: number | bigint | undefined) => {
-    if (value) {
-      return new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(value);
-    }
-  };
-
   const { person, vehicle } = useAppContext();
 
   return (
