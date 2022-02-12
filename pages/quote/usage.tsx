@@ -47,6 +47,7 @@ const Usage = () => {
     <Screen
       previousPage="/quote/vehicle"
       title="Conta pra gente como você utiliza o carro?"
+      editable
     >
       {options.map((option) => (
         <Select

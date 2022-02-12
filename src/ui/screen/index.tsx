@@ -13,15 +13,30 @@ const Title = styled.h1`
   margin-bottom: 40px;
 `;
 
+const Editable = styled.span`
+  display: block;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  padding: 4px 8px;
+  background: #ff7156;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 10;
+`;
+
 interface ScreenProps {
   title: string;
   previousPage?: string;
+  editable?: boolean;
   children: ReactNode;
 }
 
-const Screen = ({ title, previousPage, children }: ScreenProps) => {
+const Screen = ({ title, previousPage, editable, children }: ScreenProps) => {
   return (
     <ScreenContainer>
+      {editable && <Editable>Sou editável</Editable>}
       {previousPage && <BackButton previousPage={previousPage} />}
       <Title>{title}</Title>
 

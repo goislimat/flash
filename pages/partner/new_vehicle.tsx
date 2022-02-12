@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Button, Input, Screen } from "../../src/ui";
+import { useAppContext } from "../appProvider";
 
 const AddButton = styled.button`
   display: block;
@@ -18,9 +19,26 @@ const AddButton = styled.button`
 
 const NewVehicle = () => {
   const [visible, setVisibility] = useState<boolean>(false);
+  const [vehicle] = useState({
+    id: "my-custom-id",
+    protected: true,
+    vehicle: "PRISMA Sed. LT 1.4 8V Flexpower 4p.",
+    licensePlate: "QUZ7780",
+    year: "2019",
+    manufacturer: "GM - Chevrolet",
+    expireIn: 15,
+    inspectionState: "waiting",
+  });
+
+  const { registeredVehicles, setRegisteredVehicles } = useAppContext();
 
   const checkLicensePlate = () => {
     setVisibility(true);
+  };
+
+  const addVehicle = () => {
+    const prevRegisteredVehicles = registeredVehicles || [];
+    setRegisteredVehicles([vehicle, ...prevRegisteredVehicles]);
   };
 
   return (
@@ -39,7 +57,9 @@ const NewVehicle = () => {
             label="versão do modelo"
             value="PRISMA Sed. LT 1.4 8V Flexpower 4p."
           />
-          <Button nextPage="dashboard">Confirmar cadastro</Button>
+          <Button nextPage="dashboard" onClick={addVehicle}>
+            Confirmar cadastro
+          </Button>
         </div>
       )}
     </Screen>

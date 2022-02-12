@@ -10,7 +10,7 @@ const LicensePlate = () => {
   };
 
   return (
-    <Screen previousPage="/quote" title="Placa do carro">
+    <Screen previousPage="/quote" title="Placa do carro" editable>
       <Input
         name="placa"
         label="placa do carro"

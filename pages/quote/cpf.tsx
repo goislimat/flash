@@ -10,12 +10,13 @@ const CPF = () => {
   };
 
   return (
-    <Screen previousPage="/quote/cep" title="Qual seu CPF?">
+    <Screen previousPage="/quote/cep" title="Qual seu CPF?" editable>
       <Input
         name="cpf"
         label="CPF"
         onChange={handleChange}
         value="123.456.789-00"
+        disabled={false}
       />
       <Button
         nextPage="email"

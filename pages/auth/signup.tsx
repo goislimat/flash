@@ -3,7 +3,7 @@ import { Button, Input, Screen } from "../../src/ui";
 const Login = () => {
   return (
     <Screen previousPage="/quote/proposal" title="Criar conta">
-      <Input label="email" name="email" value="thiago.lima@pier.digital" />
+      <Input label="email" name="email" value="exemplo@pier.digital" />
       <Input label="senha" name="password" value="12345678" password />
       <Input
         label="confirmar senha"

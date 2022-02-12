@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
-const Screen = styled.a`
+const Screen = styled.button`
   position: absolute;
   top: 0;
   left: 0;
@@ -12,6 +13,8 @@ const Screen = styled.a`
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  border: none;
+  width: 100%;
 
   span {
     color: white;
@@ -21,12 +24,17 @@ const Screen = styled.a`
 `;
 
 const Photos = () => {
+  const router = useRouter();
+
+  const displayInfoAndNavigate = () => {
+    alert("Fotos enviadas!!");
+    router.push("/app/contract");
+  };
+
   return (
-    <Link href="/app/contract" passHref>
-      <Screen>
-        <span>Fotos</span>
-      </Screen>
-    </Link>
+    <Screen type="button" onClick={displayInfoAndNavigate}>
+      <span>Fotos</span>
+    </Screen>
   );
 };
 

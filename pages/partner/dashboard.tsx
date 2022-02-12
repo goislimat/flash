@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 import { Button, NotProtected, Protected, Screen } from "../../src/ui";
+import { useAppContext } from "../appProvider";
 
 const Logout = styled.a`
   display: block;
@@ -29,26 +31,9 @@ const VehiclesList = styled.div`
   }
 `;
 
-const REGISTERED_VEHICLES = [
-  {
-    id: "1234-myid",
-    protected: true,
-    vehicle: "HB20 Unique 1.0 Flex 12V Mec.",
-    licensePlate: "XLS 2132",
-    year: "2019",
-    manufacturer: "Ford",
-    expireIn: 19,
-    inspectionState: "waiting",
-  },
-  {
-    id: "5678-mynewid",
-    protected: false,
-    vehicle: "Onix 1.8 Flex",
-    licensePlate: "PON 8897",
-  },
-];
-
 const Dashboard = () => {
+  const { registeredVehicles } = useAppContext();
+
   return (
     <>
       <Screen title="Veículos pré-aprovados">
@@ -57,7 +42,7 @@ const Dashboard = () => {
         </Link>
 
         <VehiclesList>
-          {REGISTERED_VEHICLES.map((vehicle) => {
+          {registeredVehicles?.map((vehicle) => {
             if (vehicle.protected)
               return <Protected key={vehicle.id} vehicle={vehicle} />;
 

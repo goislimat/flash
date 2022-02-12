@@ -67,6 +67,17 @@ const Button = styled.button`
   font-weight: bold;
 `;
 
+const InspectionTag = styled.span`
+  display: block;
+  text-align: center;
+  width: 100%;
+  background: #68a462;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 32px;
+  padding: 8px;
+`;
+
 interface ProtectedProps {
   vehicle: {
     vehicle: string;
@@ -98,7 +109,7 @@ const getInspectionAction = (state: string) => {
         </Button>
       );
     case "done":
-      return <span>Vistoria finalizada</span>;
+      return <InspectionTag>Vistoria finalizada</InspectionTag>;
     default:
       return null;
   }
