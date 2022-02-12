@@ -6,7 +6,6 @@ const Pay = () => {
       previousPage="/app/acquisition/partner/welcome"
       title="Dados do cartão"
     >
-      <p>Informações do seguro e valor</p>
       <Input
         name="card_number"
         label="número do cartão"
