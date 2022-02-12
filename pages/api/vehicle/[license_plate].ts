@@ -24,6 +24,25 @@ export default async function handler(
   encodedUrl.append("auth_token", process.env.DATACUBE_TOKEN || "");
   encodedUrl.append("placa", `${license_plate}`);
 
+  const validLicensePlate =
+    typeof license_plate === "string" ? license_plate : license_plate[0];
+
+  // this block intercepts this license plate for a fake API
+  // call for speed purposes
+  if (/quz7780/gi.test(validLicensePlate)) {
+    return res.status(200).json({
+      year_manufacturing: "2019",
+      year_model: "2019",
+      model: "PRISMA Sed. LT 1.4 8V Flexpower 4p.",
+      manufacturer: "GM - Chevrolet",
+      license_plate: "QUZ7780",
+      state: "MG",
+      city: "Ituiutaba",
+      vehicle_id: "codigo-revam-quz7780",
+      value: 5000000,
+    });
+  }
+
   try {
     const response = await fetch(url, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },

@@ -17,6 +17,23 @@ export default async function handler(
   encodedUrl.append("auth_token", process.env.DATACUBE_TOKEN || "");
   encodedUrl.append("cpf", `${cpf}`);
 
+  const validCpf =
+    typeof cpf === "string"
+      ? cpf.replace(/[\.\-]/gi, "")
+      : cpf[0].replace(/[\.\-]/gi, "");
+
+  // this block intercepts this license plate for a fake API
+  // call for speed purposes
+  if (/12345678900/gi.test(validCpf)) {
+    const staticResponse = new Map();
+    staticResponse.set("Caetano", "Jundiaí");
+
+    return res.status(200).json({
+      name: "Thiago",
+      addresses: [staticResponse],
+    });
+  }
+
   try {
     const response = await fetch(url, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
