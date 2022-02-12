@@ -44,7 +44,7 @@ interface RegisteredVehicle {
   protected: boolean;
   vehicle: string;
   licensePlate: string;
-  year?: string;
+  year?: number;
   manufacturer?: string;
   expireIn?: number;
   inspectionState?: string;
@@ -84,7 +84,7 @@ const AppProvider = ({ children }: Props) => {
       protected: true,
       vehicle: "HB20 Unique 1.0 Flex 12V Mec.",
       licensePlate: "XLS 2132",
-      year: "2019",
+      year: 2019,
       manufacturer: "Ford",
       expireIn: 2,
       inspectionState: "done",

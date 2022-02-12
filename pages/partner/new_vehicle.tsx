@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
+import useSWR from "swr";
+import { fetcher } from "../../src/helpers/http";
 import { Button, Input, Screen } from "../../src/ui";
 import { useAppContext } from "../appProvider";
 
@@ -18,22 +20,34 @@ const AddButton = styled.button`
 `;
 
 const NewVehicle = () => {
-  const [visible, setVisibility] = useState<boolean>(false);
-  const [vehicle] = useState({
+  // iddle, fetching, done
+  const [fetch, setFetchState] = useState<string>("iddle");
+  const [vehicle, setVehicle] = useState({
     id: "my-custom-id",
     protected: true,
     vehicle: "PRISMA Sed. LT 1.4 8V Flexpower 4p.",
     licensePlate: "QUZ7780",
-    year: "2019",
+    year: 2019,
     manufacturer: "GM - Chevrolet",
     expireIn: 15,
     inspectionState: "waiting",
   });
 
-  const { registeredVehicles, setRegisteredVehicles } = useAppContext();
+  const {
+    licensePlate,
+    setLicensePlate,
+    registeredVehicles,
+    setRegisteredVehicles,
+  } = useAppContext();
+  const { data, error } = useSWR(
+    fetch === "fetching" ? `/api/vehicle/${licensePlate}` : null,
+    fetcher
+  );
 
   const checkLicensePlate = () => {
-    setVisibility(true);
+    const validLicensePlate = licensePlate || "QUZ7780";
+    setLicensePlate(validLicensePlate);
+    setFetchState("fetching");
   };
 
   const addVehicle = () => {
@@ -41,21 +55,51 @@ const NewVehicle = () => {
     setRegisteredVehicles([vehicle, ...prevRegisteredVehicles]);
   };
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setLicensePlate(event.target.value);
+  };
+
+  useEffect(() => {
+    if (data) {
+      setVehicle({
+        id: data?.id,
+        protected: true,
+        vehicle: data?.model,
+        licensePlate: data?.license_plate,
+        year: data?.year_model,
+        manufacturer: data?.manufacturer,
+        expireIn: 15,
+        inspectionState: "waiting",
+      });
+      setFetchState("done");
+    }
+  }, [data]);
+
+  if (error) return <div>An error has occured</div>;
+
   return (
-    <Screen previousPage="dashboard" title="Cadastrar carro">
-      <Input name="license_plate" label="placa do carro" value="QUZ7780" />
+    <Screen previousPage="dashboard" title="Cadastrar carro" editable>
+      <Input
+        name="license_plate"
+        label="placa do carro"
+        value="QUZ7780"
+        onChange={handleChange}
+        disabled={false}
+      />
       <AddButton type="button" onClick={checkLicensePlate}>
         Consultar
       </AddButton>
 
-      {visible && (
+      {fetch === "fetching" && <div>Loading...</div>}
+
+      {fetch === "done" && (
         <div>
-          <Input name="make" label="fabricante" value="GM - Chevrolet" />
-          <Input name="year" label="ano do modelo" value="2019" />
+          <Input name="make" label="fabricante" value={vehicle.manufacturer} />
+          <Input name="year" label="ano do modelo" value={vehicle.year} />
           <Input
             name="model"
             label="versão do modelo"
-            value="PRISMA Sed. LT 1.4 8V Flexpower 4p."
+            value={vehicle?.vehicle}
           />
           <Button nextPage="dashboard" onClick={addVehicle}>
             Confirmar cadastro

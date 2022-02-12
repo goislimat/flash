@@ -82,7 +82,7 @@ interface ProtectedProps {
   vehicle: {
     vehicle: string;
     licensePlate?: string;
-    year?: string;
+    year?: number;
     manufacturer?: string;
     expireIn?: number;
     inspectionState?: string;

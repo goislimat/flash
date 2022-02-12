@@ -27,7 +27,7 @@ const StyledInput = styled.input`
 interface InputProps {
   name: string;
   label: string;
-  value?: string;
+  value?: string | number;
   password?: true;
   disabled?: boolean;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
