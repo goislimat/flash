@@ -3,7 +3,7 @@ import { Button, Input, Screen } from "../../src/ui";
 import { useAppContext } from "../appProvider";
 
 const LicensePlate = () => {
-  const { setLicensePlate } = useAppContext();
+  const { licensePlate, setLicensePlate } = useAppContext();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setLicensePlate(event.target.value);
@@ -15,9 +15,15 @@ const LicensePlate = () => {
         name="placa"
         label="placa do carro"
         disabled={false}
+        value="QUZ7780"
         onChange={handleChange}
       />
-      <Button nextPage="vehicle">Continuar</Button>
+      <Button
+        nextPage="vehicle"
+        onClick={() => setLicensePlate(licensePlate || "QUZ7780")}
+      >
+        Continuar
+      </Button>
     </Screen>
   );
 };

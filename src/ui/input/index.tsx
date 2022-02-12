@@ -33,7 +33,14 @@ interface InputProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ name, label, value, password, disabled, onChange }: InputProps) => {
+const Input = ({
+  name,
+  label,
+  value,
+  password,
+  disabled = true,
+  onChange,
+}: InputProps) => {
   return (
     <InputContainer>
       <InputLabel htmlFor={name}>{label}</InputLabel>

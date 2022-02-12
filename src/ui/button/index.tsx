@@ -19,13 +19,14 @@ const StyledButton = styled.a`
 
 interface ButtonProps {
   nextPage: string;
+  onClick?: () => void;
   children: ReactNode;
 }
 
-const Button = ({ nextPage, children }: ButtonProps) => {
+const Button = ({ nextPage, onClick, children }: ButtonProps) => {
   return (
     <Link href={nextPage} passHref>
-      <StyledButton>{children}</StyledButton>
+      <StyledButton onClick={onClick}>{children}</StyledButton>
     </Link>
   );
 };

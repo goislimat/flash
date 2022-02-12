@@ -32,6 +32,17 @@ const OPTIONS = [
 const Usage = () => {
   const [options, setOptions] = useState(OPTIONS);
 
+  const handleClick = (title: string) => {
+    const newOptions = options.map((option) => {
+      return {
+        ...option,
+        active: option.title === title,
+      };
+    });
+
+    setOptions(newOptions);
+  };
+
   return (
     <Screen
       previousPage="/quote/vehicle"
@@ -43,6 +54,7 @@ const Usage = () => {
           title={option.title}
           subtitle={option.subtitle}
           active={option.active}
+          handleClick={handleClick}
         />
       ))}
       <Button nextPage="cep">Continuar</Button>

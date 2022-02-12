@@ -65,11 +65,12 @@ interface SelectProps {
   title: string;
   subtitle: string;
   active: boolean;
+  handleClick: (title: string) => void;
 }
 
-const Select = ({ title, subtitle, active }: SelectProps) => {
+const Select = ({ title, subtitle, active, handleClick }: SelectProps) => {
   return (
-    <Button active={active}>
+    <Button active={active} type="button" onClick={() => handleClick(title)}>
       <CheckmarkContainer active={active}>
         <Checkmark active={active} />
       </CheckmarkContainer>

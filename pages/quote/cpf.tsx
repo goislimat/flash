@@ -3,7 +3,7 @@ import { Button, Input, Screen } from "../../src/ui";
 import { useAppContext } from "../appProvider";
 
 const CPF = () => {
-  const { setPersonCpf } = useAppContext();
+  const { personCpf, setPersonCpf } = useAppContext();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setPersonCpf(event.target.value);
@@ -11,8 +11,18 @@ const CPF = () => {
 
   return (
     <Screen previousPage="/quote/cep" title="Qual seu CPF?">
-      <Input name="cpf" label="CPF" onChange={handleChange} />
-      <Button nextPage="email">Continuar</Button>
+      <Input
+        name="cpf"
+        label="CPF"
+        onChange={handleChange}
+        value="123.456.789-00"
+      />
+      <Button
+        nextPage="email"
+        onClick={() => setPersonCpf(personCpf || "123.456.789-00")}
+      >
+        Continuar
+      </Button>
     </Screen>
   );
 };
