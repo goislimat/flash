@@ -15,7 +15,7 @@ export default async function handler(
 
   const encodedUrl = new URLSearchParams();
   encodedUrl.append("auth_token", "DATACUBE_TOKEN");
-  encodedUrl.append("cpf", "03480282539");
+  encodedUrl.append("cpf", `${cpf}`);
 
   try {
     const response = await fetch(url, {
