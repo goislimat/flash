@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import useSWR from "swr";
+import { fetcher } from "../../src/helpers/http";
 
 import { Screen } from "../../src/ui";
+import { useAppContext } from "../appProvider";
 
 const Content = styled.div`
   text-align: center;
@@ -61,14 +64,51 @@ const CheckList = styled.ul`
   }
 `;
 
+type EventState = "loading" | "done";
+interface AsyncEventsProps {
+  dataFetch: EventState;
+  animationState: EventState;
+}
+
 const Prepare = () => {
+  const [asyncEvents, setAsyncEvents] = useState<AsyncEventsProps>({
+    dataFetch: "loading",
+    animationState: "loading",
+  });
   const router = useRouter();
+
+  const { personCpf, setPerson } = useAppContext();
+
+  const { data, error } = useSWR(`/api/person/${personCpf}`, fetcher);
 
   useEffect(() => {
     setTimeout(() => {
-      router.push("/quote/proposal");
+      setAsyncEvents((prev) => ({
+        ...prev,
+        animationState: "done",
+      }));
     }, 8000);
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      setPerson(data);
+      setAsyncEvents((prev) => ({
+        ...prev,
+        dataFetch: "done",
+      }));
+    }
+  }, [data, setPerson]);
+
+  useEffect(() => {
+    if (
+      asyncEvents.dataFetch === "done" &&
+      asyncEvents.animationState === "done"
+    )
+      router.push("/quote/proposal");
+  }, [asyncEvents, router]);
+
+  if (error) return "An error has occurred";
 
   return (
     <Screen title="Estamos montando sua cotação">

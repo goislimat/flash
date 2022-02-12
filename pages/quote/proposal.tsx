@@ -103,17 +103,12 @@ const Proposal = () => {
     }
   };
 
-  const { personCpf, vehicle } = useAppContext();
-
-  const { data, error } = useSWR(`/api/person/${personCpf}`, fetcher);
-
-  if (error) return "An error has occurred.";
-  if (!data) return "Loading...";
+  const { person, vehicle } = useAppContext();
 
   return (
     <Screen previousPage="/" title="Cotação seguro Auto Pier">
       <Greetings>
-        <strong>{data?.name?.split(" ")[0]}</strong>, aqui sua cotação!
+        <strong>{person?.name?.split(" ")[0]}</strong>, aqui sua cotação!
       </Greetings>
 
       <ProposalContainer>
