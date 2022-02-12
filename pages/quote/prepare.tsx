@@ -87,7 +87,7 @@ const Prepare = () => {
         ...prev,
         animationState: "done",
       }));
-    }, 8000);
+    }, 9000);
   }, []);
 
   useEffect(() => {

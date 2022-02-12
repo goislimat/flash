@@ -116,7 +116,7 @@ const Welcome = () => {
             <PriceContainer>
               <span>Mensalidade</span>
               <Price>
-                R$<em>89,90</em>
+                R$<em>39,90</em>
               </Price>
             </PriceContainer>
 
@@ -131,7 +131,7 @@ const Welcome = () => {
           <div>
             <div>
               <span>Roubo e Furto + Assistências 24h</span>
-              <em>R$ 89,90/mês</em>
+              <em>R$ 39,90/mês</em>
             </div>
             <div>
               <Image src="/assets/lock.png" alt="lock" height={13} width={13} />

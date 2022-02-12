@@ -120,7 +120,7 @@ const Proposal = () => {
           <ValuesContainer>
             <Price>
               <span>R$</span>
-              <em>89,90</em>
+              <em>39,90</em>
               <span>/mês</span>
             </Price>
 
@@ -134,11 +134,11 @@ const Proposal = () => {
         <CoveragesSection>
           <div>
             <span>Roubo e Furto + Assistências 24h</span>
-            <span>R$ 91,66</span>
+            <span>R$ 39,90</span>
           </div>
           <div>
             <strong>Valor total</strong>
-            <strong>R$ 91,66</strong>
+            <strong>R$ 39,90</strong>
           </div>
         </CoveragesSection>
         <SectionLine />

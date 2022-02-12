@@ -39,7 +39,7 @@ export default async function handler(
       state: "MG",
       city: "Ituiutaba",
       vehicle_id: "codigo-revam-quz7780",
-      value: 50000,
+      value: 54325,
     });
   }
 

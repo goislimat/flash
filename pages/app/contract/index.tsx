@@ -180,7 +180,7 @@ const Contract = () => {
 
           <div>
             <span>Mensalidade</span>
-            <strong>R$ 89,90</strong>
+            <strong>R$ 39,90</strong>
           </div>
 
           <div>
