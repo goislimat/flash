@@ -21,7 +21,7 @@ export default async function handler(
   const { license_plate } = req.query;
 
   const encodedUrl = new URLSearchParams();
-  encodedUrl.append("auth_token", "DATACUBE_TOKEN");
+  encodedUrl.append("auth_token", process.env.DATACUBE_TOKEN || "");
   encodedUrl.append("placa", `${license_plate}`);
 
   try {
@@ -48,7 +48,7 @@ export default async function handler(
       state: result?.uf,
       city: result?.municipio,
       vehicle_id: result?.renavam,
-      value: result?.fipe_possivel[0]?.valor
+      value: result?.fipe_possivel[0]?.valor,
     });
   } catch (error) {
     return res.status(500);

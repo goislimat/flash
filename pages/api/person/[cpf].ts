@@ -14,7 +14,7 @@ export default async function handler(
   const { cpf } = req.query;
 
   const encodedUrl = new URLSearchParams();
-  encodedUrl.append("auth_token", "DATACUBE_TOKEN");
+  encodedUrl.append("auth_token", process.env.DATACUBE_TOKEN || "");
   encodedUrl.append("cpf", "03480282539");
 
   try {
