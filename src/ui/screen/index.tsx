@@ -24,6 +24,7 @@ const Editable = styled.span`
   text-transform: uppercase;
   font-weight: bold;
   z-index: 10;
+  font-size: 10px;
 `;
 
 interface ScreenProps {
