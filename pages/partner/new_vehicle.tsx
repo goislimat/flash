@@ -1,5 +1,20 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { Button, Input, Screen } from "../../src/ui";
+
+const AddButton = styled.button`
+  display: block;
+  text-align: center;
+  background: #ff678e;
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+  width: 100%;
+  border: none;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  font-weight: bold;
+`;
 
 const NewVehicle = () => {
   const [visible, setVisibility] = useState<boolean>(false);
@@ -11,9 +26,9 @@ const NewVehicle = () => {
   return (
     <Screen previousPage="dashboard" title="Cadastrar carro">
       <Input name="license_plate" label="placa do carro" value="QUZ7780" />
-      <button type="button" onClick={checkLicensePlate}>
+      <AddButton type="button" onClick={checkLicensePlate}>
         Consultar
-      </button>
+      </AddButton>
 
       {visible && (
         <div>
