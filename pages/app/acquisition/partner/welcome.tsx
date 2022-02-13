@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { formatCurrency } from "../../../../src/helpers/currency";
-import { Button, Screen } from "../../../../src/ui";
+import { Button, Modal, Screen } from "../../../../src/ui";
 import { useAppContext } from "../../../appProvider";
 
 const Content = styled.div`
@@ -113,60 +113,68 @@ const Welcome = () => {
   const { vehicle } = useAppContext();
 
   return (
-    <Screen previousPage="/" title="Confira a sua cotação">
-      <Content>
-        <MainCard>
-          <MainCardContent>
-            <PriceContainer>
-              <span>Mensalidade</span>
-              <Price>
-                R$<em>39,90</em>
-              </Price>
-            </PriceContainer>
+    <>
+      <Modal />
+      <Screen previousPage="/" title="Confira a sua cotação">
+        <Content>
+          <MainCard>
+            <MainCardContent>
+              <PriceContainer>
+                <span>Mensalidade</span>
+                <Price>
+                  R$<em>39,90</em>
+                </Price>
+              </PriceContainer>
 
-            <Image src="/assets/car.png" alt="car" width={80} height={60} />
-          </MainCardContent>
+              <Image src="/assets/car.png" alt="car" width={80} height={60} />
+            </MainCardContent>
 
-          <Button nextPage="/app/billing/pay">Ir para pagamento</Button>
-        </MainCard>
+            <Button nextPage="/app/billing/pay">Ir para pagamento</Button>
+          </MainCard>
 
-        <PlanContainer>
-          <h2>Seu plano</h2>
-          <div>
+          <PlanContainer>
+            <h2>Seu plano</h2>
             <div>
-              <span>Roubo e Furto + Assistências 24h</span>
-              <em>R$ 39,90/mês</em>
+              <div>
+                <span>Roubo e Furto + Assistências 24h</span>
+                <em>R$ 39,90/mês</em>
+              </div>
+              <div>
+                <Image
+                  src="/assets/lock.png"
+                  alt="lock"
+                  height={13}
+                  width={13}
+                />
+              </div>
+            </div>
+          </PlanContainer>
+
+          <SectionLine />
+
+          <CarContainer>
+            <h2>Carro</h2>
+
+            <div>
+              <span>Modelo</span>
+              <em>{vehicle?.model}</em>
             </div>
             <div>
-              <Image src="/assets/lock.png" alt="lock" height={13} width={13} />
+              <span>Placa</span>
+              <em>{vehicle?.license_plate}</em>
             </div>
-          </div>
-        </PlanContainer>
-
-        <SectionLine />
-
-        <CarContainer>
-          <h2>Carro</h2>
-
-          <div>
-            <span>Modelo</span>
-            <em>{vehicle?.model}</em>
-          </div>
-          <div>
-            <span>Placa</span>
-            <em>{vehicle?.license_plate}</em>
-          </div>
-          <div>
-            <span>Cobertura</span>
-            <em>100% da Tabela FIPE</em>
-          </div>
-          <div>
-            <span>Valor da cobertura</span>
-            <em>{formatCurrency(vehicle?.value)}</em>
-          </div>
-        </CarContainer>
-      </Content>
-    </Screen>
+            <div>
+              <span>Cobertura</span>
+              <em>100% da Tabela FIPE</em>
+            </div>
+            <div>
+              <span>Valor da cobertura</span>
+              <em>{formatCurrency(vehicle?.value)}</em>
+            </div>
+          </CarContainer>
+        </Content>
+      </Screen>
+    </>
   );
 };
 
