@@ -146,7 +146,7 @@ const Contract = () => {
           <Banner>
             <div>
               <strong>Vistoria pendente</strong>
-              <p>Faça vistoria e ganha 10% de desconto na próxima fatura</p>
+              <p>Faça vistoria e ganhe 10% de desconto na próxima fatura</p>
             </div>
             <ActionButtonContainer>
               <ActionButtonBanner>
