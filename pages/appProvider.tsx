@@ -25,6 +25,8 @@ type Vehicle = {
 
 type LicensePlate = string;
 type Cpf = string;
+type Paid = boolean;
+type Inspected = boolean;
 
 interface AppContextInterface {
   setLicensePlate: (newLicensePlate: LicensePlate) => void;
@@ -32,11 +34,15 @@ interface AppContextInterface {
   setVehicle: (newVehicle: Vehicle) => void;
   setPerson: (newPerson: Person) => void;
   setRegisteredVehicles: (vehicles: RegisteredVehicle[]) => void;
+  setPaid: (paid: Paid) => void;
+  setInspected: (inspected: Inspected) => void;
   licensePlate?: LicensePlate;
   personCpf?: Cpf;
   person?: Person;
   vehicle?: Vehicle;
   registeredVehicles?: RegisteredVehicle[];
+  paid?: Paid;
+  inspected?: Inspected;
 }
 
 interface RegisteredVehicle {
@@ -56,11 +62,15 @@ const AppContextInterfaceDefaults: AppContextInterface = {
   setVehicle: () => null,
   setPerson: () => null,
   setRegisteredVehicles: () => null,
+  setPaid: () => null,
+  setInspected: () => null,
   licensePlate: undefined,
   personCpf: undefined,
   person: undefined,
   vehicle: undefined,
   registeredVehicles: [],
+  paid: undefined,
+  inspected: undefined,
 };
 
 const AppContext = createContext<AppContextInterface>(
@@ -76,6 +86,8 @@ const AppProvider = ({ children }: Props) => {
   const [licensePlate, setLicensePlate] = useState<LicensePlate>();
   const [personCpf, setPersonCpf] = useState<LicensePlate>();
   const [person, setPerson] = useState<Person>();
+  const [paid, setPaid] = useState<Paid>(false);
+  const [inspected, setInspected] = useState<Inspected>(false);
   const [registeredVehicles, setRegisteredVehicles] = useState<
     RegisteredVehicle[]
   >([
@@ -103,11 +115,15 @@ const AppProvider = ({ children }: Props) => {
     setVehicle,
     setPerson,
     setRegisteredVehicles,
+    setPaid,
+    setInspected,
     licensePlate,
     personCpf,
     vehicle,
     person,
     registeredVehicles,
+    paid,
+    inspected,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

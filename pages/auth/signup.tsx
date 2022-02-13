@@ -1,6 +1,9 @@
 import { Button, Input, Screen } from "../../src/ui";
+import { useAppContext } from "../appProvider";
 
-const Login = () => {
+const Signup = () => {
+  const { setPaid, setInspected } = useAppContext();
+
   return (
     <Screen previousPage="/quote/proposal" title="Criar conta">
       <Input label="email" name="email" value="exemplo@pier.digital" />
@@ -11,9 +14,17 @@ const Login = () => {
         value="12345678"
         password
       />
-      <Button nextPage="/app/acquisition/partner/welcome">Criar</Button>
+      <Button
+        nextPage="/app/acquisition/partner/welcome"
+        onClick={() => {
+          setPaid(false);
+          setInspected(false);
+        }}
+      >
+        Criar
+      </Button>
     </Screen>
   );
 };
 
-export default Login;
+export default Signup;

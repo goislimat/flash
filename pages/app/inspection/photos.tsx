@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { useAppContext } from "../../appProvider";
 
 const Screen = styled.button`
   position: absolute;
@@ -24,10 +25,12 @@ const Screen = styled.button`
 `;
 
 const Photos = () => {
+  const { setInspected } = useAppContext();
   const router = useRouter();
 
   const displayInfoAndNavigate = () => {
     alert("Fotos enviadas!!");
+    setInspected(true);
     router.push("/app/contract");
   };
 

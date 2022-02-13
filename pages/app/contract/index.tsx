@@ -137,23 +137,25 @@ const CheckContainer = styled.div`
 `;
 
 const Contract = () => {
-  const { vehicle } = useAppContext();
+  const { vehicle, inspected } = useAppContext();
 
   return (
     <Screen title="Contratos">
-      <Link href="/app/inspection" passHref>
-        <Banner>
-          <div>
-            <strong>Vistoria pendente</strong>
-            <p>Faça vistoria e ganha 10% de desconto na próxima fatura</p>
-          </div>
-          <ActionButtonContainer>
-            <ActionButtonBanner>
-              <span />
-            </ActionButtonBanner>
-          </ActionButtonContainer>
-        </Banner>
-      </Link>
+      {!inspected && (
+        <Link href="/app/inspection" passHref>
+          <Banner>
+            <div>
+              <strong>Vistoria pendente</strong>
+              <p>Faça vistoria e ganha 10% de desconto na próxima fatura</p>
+            </div>
+            <ActionButtonContainer>
+              <ActionButtonBanner>
+                <span />
+              </ActionButtonBanner>
+            </ActionButtonContainer>
+          </Banner>
+        </Link>
+      )}
 
       <Container>
         <ProtectedSection>
